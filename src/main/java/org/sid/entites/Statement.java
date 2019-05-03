@@ -29,7 +29,9 @@ public class Statement  {
 	Account account;
 	
 	public Statement () {
+		
 		super();
+		this.amount = 0.0;
 		// TODO Auto-generated constructor stub
 	}
 	public Statement (Date date, double amount, Type type, Account account) throws AmountNegatifException  {

@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.19.RELEASE</version>
-		<relativePath/>  <!-- lookup parent from repository -->
+		<relativePath />  <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.sid</groupId>
 	<artifactId>demo</artifactId>
@@ -46,6 +46,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-nop</artifactId>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

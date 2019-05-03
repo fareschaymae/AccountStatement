@@ -3,9 +3,7 @@ package org.sid.controller;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
-
 import javax.validation.Valid;
-
 import org.sid.entites.Account;
 import org.sid.entites.Statement;
 import org.sid.exceptions.AmountNegatifException;
@@ -19,10 +17,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.view.RedirectView;
+
 
 @Controller
+@RequestMapping("/")
 public class AccountController {
 
 	@Autowired
@@ -40,7 +38,7 @@ public class AccountController {
 	}
 
 	@RequestMapping(value="/DepositView", method=RequestMethod.GET)
-	public String RedirectView(Model model, Statement statement,@RequestParam(value="id") Long id){
+	public String DepositView(Model model, Statement statement,@RequestParam(value="id") Long id){
 		statement.setAccount(accountRepository.findOne(id));
 		model.addAttribute("statement", new Statement());
 		model.addAttribute("id", id);
@@ -48,16 +46,14 @@ public class AccountController {
 	}
 
 	@RequestMapping(value="/deposit", method=RequestMethod.POST)
-	public String verser(Model model,@Valid Statement statement, BindingResult bindingResult,@RequestParam(value="id") Long id ,
+	public String deposit(Model model,@Valid Statement statement, BindingResult bindingResult,@RequestParam(value="id") Long id ,
 			@RequestParam(value="amountDeposit") double mt) throws AmountNegatifException{
 		try{
 			Account account = accountRepository.findOne(id);
 			statementServiceImpl.deposit(mt, id, statement);
-			statementRepository.deposit(account.getId(), account.getBalance()+mt);
-			
-			
-			
+			accountRepository.deposit(account.getId(), account.getBalance()+mt);
 		}
+		
 		catch (Exception e) {
 			// TODO Auto-generated catch block
 			String message= e.getMessage();
@@ -73,7 +69,7 @@ public class AccountController {
 
 
 	@RequestMapping(value="/WithdrawalView", method=RequestMethod.GET)
-	public String RetreitView(Model model, Statement statement,@RequestParam(value="id") Long id){
+	public String WithdrawalView(Model model, Statement statement,@RequestParam(value="id") Long id){
 		statement.setAccount(accountRepository.findOne(id));
 		model.addAttribute("statement", new Statement());
 		model.addAttribute("id", id);
@@ -81,13 +77,13 @@ public class AccountController {
 	}
 
 	@RequestMapping(value="/withdrawal", method=RequestMethod.POST)
-	public String retirer(Model model,Statement statement, @RequestParam(value="id") Long id ,
+	public String withdrawal(Model model,Statement statement, @RequestParam(value="id") Long id ,
 			@RequestParam(value="montantWithdrawal") double mt) throws AmountNegatifException{
 
 		try{
 			Account account = accountRepository.findOne(id);
 			statementServiceImpl.withdrawal(mt, id, statement);
-			statementRepository.withdrawal(id, account.getBalance()-mt);
+			accountRepository.withdrawal(id, account.getBalance()-mt);
 			
 			
 		}
@@ -106,7 +102,7 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value="/listStatement", method=RequestMethod.GET)
-	public String listOperations(Model model, @RequestParam(value="id") Long id){
+	public String listStatements(Model model, @RequestParam(value="id") Long id){
 		List<Statement> statements= statementRepository.findAll();
 		Account account = accountRepository.findOne(id);
 		model.addAttribute("statements", statements);

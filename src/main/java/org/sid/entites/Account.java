@@ -6,11 +6,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.AccessType;
 
 @Entity
-@Table
-
+@Table(name="account")
 public class Account {
 	
 	@Id @GeneratedValue
@@ -21,7 +19,10 @@ public class Account {
 	
 	public Account() {
 		super();
-		// TODO Auto-generated constructor stub
+		Long id= (long) 0;
+		this.idAccount= id;
+		this.balance=0.0;
+		
 	}
 	public Account(double balance) {
 		super();
