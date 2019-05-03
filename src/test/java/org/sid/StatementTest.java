@@ -32,7 +32,7 @@ public class StatementTest {
 	}
 	
 	@Test
-	public void WhenMakingDepositBalanceIncreaseByThatAmount() throws AmountNegatifException{
+	public void WhenMakingDepositStatementReturnTrue() throws AmountNegatifException{
 		List<Account> accounts = accountRepository.findAll();
 		Statement statement = new Statement();
 		double amount = 100.0;
@@ -45,10 +45,10 @@ public class StatementTest {
 	}
 	
 	@Test
-	public void WhenMakingWithrawalBalanceDecreaseByThatAmount() throws AmountNegatifException, AmountGreaterThanBalanceException{
+	public void WhenMakingWithrawalStatementReturnTrue() throws AmountNegatifException, AmountGreaterThanBalanceException{
 		List<Account> accounts = accountRepository.findAll();
 		Statement statement = new Statement();
-		double amount = -100.0;
+		double amount = 100.0;
 		for(Account c: accounts){
 			c.setBalance(100.0);
 			accountRepository.deposit(c.getId(), (c.getBalance()+amount));
