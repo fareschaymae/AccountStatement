@@ -26,7 +26,7 @@ public class StatementTest {
 	
 	
 	@Test
-	public void InitialBalanceIsZero(){
+	public void InitialAmountIsZero(){
 		Statement statement = new Statement();
 		assertEquals(0.0, statement.getAmount(), 0.0);
 	}
