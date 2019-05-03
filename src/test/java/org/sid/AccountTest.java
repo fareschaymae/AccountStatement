@@ -22,8 +22,7 @@ public class AccountTest {
 	@Autowired
 	AccountRepository accountRepository;
 
-	@Autowired
-	IStatement statementServiceTmpl;
+	
 	@Test
 	public void InitialBalanceIsZero(){
 		Account account = new Account();
