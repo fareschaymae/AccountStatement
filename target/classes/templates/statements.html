@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Liste des produits</title>
+
+
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<script src="../static/js/print.js" th:src="@{js/print.js}"></script>
+
+</head>
+
+<body>
+	<div class="container" id="container">
+		<table class="table table-editable">
+			<thead>
+				<tr>
+					<th>Operation</th>
+					<th>Montant</th>
+					<th>Date</th>
+				</tr>
+
+			</thead>
+			<tbody>
+				<tr th:each="s:${statements}">
+					<td th:text="${s.type}"></td>
+					<td th:text="${s.amount}"></td>
+					<td th:text="${s.date}"></td>
+				</tr>
+			</tbody>
+			
+		</table>
+		<strong> <div class="d-flex justify-content-center">Votre solde actuel est: <div th:text= "${account.balance}"></div></div></strong>
+		
+		<a th:href="@{/index}" class="btn btn-primary absolute" role="button">Votre
+			solde</a>
+		<button type="button" class="btn btn-primary"
+			onclick="printContent('container')">Imprimer</button>
+			
+			
+			
+	</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Liste des produits</title>
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+	th:href="@{css/style.css}" />
+
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+		<div class="container">
+			<div th:each="c:${accounts}">
+				<center>
+					<div>
+						<div>Votre solde est:</div>
+						<div th:text="${c.balance}">Votre solde est:</div>
+
+						<a th:href="@{DepositView(id=${c.id})}"
+							class="btn btn-primary absolute" role="button">Efféctuer un
+							versement</a> <a th:href="@{WithdrawalView(id=${c.id})}"
+							class="btn btn-primary absolute" role="button">Efféctuer un
+							retrait</a> <a th:href="@{listStatement(id=${c.id})}"
+							class="btn btn-primary absolute" role="button">Consulter vos
+							opérations</a>
+					</div>
+				</center>
+			</div>
+
+			<div th:if="${exceptionDeposit}" class="text-danger"
+				th:text="${message}"></div>
+			<a th:if="${exceptionDeposit}" th:href="@{/index}">Refaire le
+				versement</a>
+
+			<div th:if="${exceptionWithdrawal}" class="text-danger"
+				th:text="${message}"></div>
+			<a th:if="${exceptionWithdrawal}" th:href="@{/index}">Refaire le
+				retrait</a>
+
+		</div>
+</body>
+</html>

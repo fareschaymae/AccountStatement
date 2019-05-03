@@ -1,0 +1,35 @@
+@CHARSET "ISO-8859-1";
+
+div.container {
+	background-color: #E6F5FA;
+	width: 40%;
+	bottom: 10px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-top: 200px;
+	font-size: 50px;
+	font-family: Courier, monospace;
+}
+
+div.input-group{
+	width: 40%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-top: 200px;
+	font-family: Courier, monospace;
+}
+
+div.button-group{
+	width: 11%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-top: 20px;
+	font-family: Courier, monospace;
+}
+
+
+div.d-flex justify-content-center{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	background-color: #E6F5FA;
+}
+
