@@ -43,7 +43,7 @@ public class AccountTest {
 	
 	
 	@Test
-	public void WhenMakingWithdrawalBalanceDecreaseByThatAmount(){
+	public void WhenMakingWithdrawalBalanceDecreaseByThatAmount() throws AmountNegatifException, AmountGreaterThanBalanceException{
 		List<Account> accounts = accountRepository.findAll();
 		double amount = 100.0;
 		for(Account c: accounts){
