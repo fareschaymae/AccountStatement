@@ -50,8 +50,9 @@ public class AccountController {
 			@RequestParam(value="amountDeposit") double mt) throws AmountNegatifException{
 		try{
 			Account account = accountRepository.findOne(id);
-			statementServiceImpl.deposit(mt, id, statement);
 			accountRepository.deposit(account.getId(), account.getBalance()+mt);
+			statementServiceImpl.deposit(mt, id, statement);
+			
 		}
 		
 		catch (Exception e) {
